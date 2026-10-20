@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - arena/590519f1-lapbookovz
   workflow_dispatch:
 
 permissions:
