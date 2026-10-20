@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Все разные — все важные | Сайт Виктора, 4 класс</title>
+<meta name="description" content="Сайт Виктора Игнатьева про незрячих и слабовидящих людей: коротко, понятно и с уважением.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a237e;
+    --navy-deep:#10164f;
+    --navy-soft:#232c96;
+    --yellow:#ffd600;
+    --yellow-soft:#ffe255;
+    --sky:#eef1fb;
+    --ink:#141a4d;
+    --white:#ffffff;
+    --radius:26px;
+    --shadow:0 14px 34px rgba(16,22,79,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',Arial,Helvetica,sans-serif;
+    font-size:20px;line-height:1.55;color:var(--ink);
+    background:var(--sky);
+  }
+  img{max-width:100%;display:block}
+  a{color:var(--navy)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+  /* ---------- пропустить меню ---------- */
+  .skip{position:absolute;left:-9999px;top:0;background:var(--yellow);color:var(--navy);padding:12px 22px;font-weight:800;border-radius:0 0 16px 0;z-index:99}
+  .skip:focus{left:0}
+
+  /* ---------- навигация ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy-deep);
+    box-shadow:0 6px 22px rgba(16,22,79,.35);
+  }
+  .nav-row{
+    max-width:1080px;margin:0 auto;padding:10px 16px;
+    display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
+  }
+  .nav-row::-webkit-scrollbar{display:none}
+  .nav-row a{
+    flex:0 0 auto;display:flex;align-items:center;gap:8px;
+    color:#fff;text-decoration:none;font-weight:700;font-size:17px;
+    padding:10px 18px;border-radius:999px;white-space:nowrap;
+    border:2px solid transparent;transition:.18s;
+  }
+  .nav-row a:hover{background:var(--navy-soft);transform:translateY(-2px)}
+  .nav-row a.active{background:var(--yellow);color:var(--navy)}
+  .nav-row a:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+  .nav-row .e{font-size:22px;line-height:1}
+
+  /* ---------- секции ---------- */
+  section{padding:64px 0}
+  .bg-navy{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff}
+  .bg-navy h2,.bg-navy h3{color:#fff}
+  .bg-light{background:linear-gradient(180deg,#f7f8ff 0%,var(--sky) 100%)}
+
+  .sec-head{display:flex;align-items:center;gap:18px;margin-bottom:14px}
+  .sec-num{
+    flex:0 0 auto;width:58px;height:58px;border-radius:50%;
+    background:var(--yellow);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:26px;box-shadow:0 8px 20px rgba(0,0,0,.18);
+  }
+  h2{font-size:clamp(27px,4.5vw,42px);font-weight:900;line-height:1.15}
+  .sec-sub{font-size:clamp(18px,2.6vw,22px);font-weight:500;opacity:.92;margin-bottom:34px}
+  .bg-light .sec-sub{color:#3a4390}
+
+  /* ---------- карточки ---------- */
+  .grid{display:grid;gap:22px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+
+  .card{
+    background:var(--white);border-radius:var(--radius);
+    padding:26px 24px;box-shadow:var(--shadow);
+    transition:transform .18s;color:var(--ink);
+  }
+  /* белые карточки внутри тёмных секций: явно тёмный текст,
+     иначе наследуют белый цвет секции и становятся невидимыми */
+  .card,.quiz,.final,.author{color:var(--ink)}
+  .card:hover{transform:translateY(-6px)}
+  .card h3{font-size:22px;font-weight:800;margin-bottom:8px;color:var(--navy)}
+  .card p{font-size:18.5px;font-weight:500}
+  .ico{
+    width:86px;height:86px;border-radius:26px;background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-size:46px;margin-bottom:16px;
+  }
+
+  /* ---------- герой ---------- */
+  .hero{padding:56px 0 64px}
+  .badge{
+    display:inline-block;background:var(--yellow);color:var(--navy);
+    font-weight:900;font-size:17px;padding:10px 22px;border-radius:999px;
+    margin-bottom:22px;letter-spacing:.5px;
+  }
+  h1{
+    font-size:clamp(34px,6.4vw,62px);font-weight:900;line-height:1.08;
+    color:#fff;max-width:820px;
+  }
+  h1 em{font-style:normal;color:var(--yellow)}
+  .hero-sub{font-size:clamp(19px,2.8vw,24px);font-weight:500;color:rgba(255,255,255,.9);margin:18px 0 30px;max-width:640px}
+  .hero-img{
+    border-radius:var(--radius);border:6px solid var(--yellow);
+    box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;margin-bottom:34px;
+  }
+  .hero-img img{width:100%;height:auto}
+
+  .author{
+    display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+    background:var(--white);border-radius:var(--radius);padding:24px 28px;
+    box-shadow:var(--shadow);margin-bottom:26px;
+  }
+  .author img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:5px solid var(--yellow)}
+  .author b{font-size:22px;font-weight:900;color:var(--navy)}
+  .author p{font-size:19px;font-weight:500;margin-top:4px}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .chip{background:var(--sky);color:var(--navy);font-weight:800;font-size:15px;padding:8px 16px;border-radius:999px}
+
+  .fact{border-top:8px solid var(--yellow)}
+  .fact .ico{width:72px;height:72px;font-size:40px;border-radius:20px;margin-bottom:14px}
+
+  /* ---------- фокус-баннер ---------- */
+  .focus{
+    margin-top:34px;background:var(--yellow);color:var(--navy);
+    border-radius:var(--radius);padding:26px 30px;font-weight:800;
+    font-size:clamp(19px,3vw,24px);display:flex;gap:16px;align-items:center;
+    box-shadow:0 14px 34px rgba(255,214,0,.35);
+  }
+  .focus .e{font-size:44px;line-height:1}
+
+  /* ---------- цифры ---------- */
+  .stat{text-align:center;position:relative;overflow:hidden}
+  .stat::after{
+    content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;
+    border-radius:50%;background:var(--yellow);opacity:.16;
+  }
+  .stat .n{font-size:clamp(34px,5vw,50px);font-weight:900;color:var(--navy);line-height:1.1}
+  .stat .t{margin-top:8px;font-size:18px;font-weight:600;color:#3a4390}
+  .picto{
+    margin:36px auto 10px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  }
+  .picto span{
+    font-size:62px;line-height:1;filter:grayscale(1) opacity(.5);
+    background:rgba(255,255,255,.1);border-radius:22px;padding:14px 16px;
+  }
+  .picto .hl{filter:none;background:var(--yellow);box-shadow:0 10px 26px rgba(255,214,0,.4)}
+  .picto-cap{text-align:center;font-weight:700;font-size:18.5px;color:rgba(255,255,255,.92)}
+  .nn{
+    margin-top:34px;background:var(--yellow);color:var(--navy);
+    border-radius:var(--radius);padding:26px 30px;box-shadow:0 14px 34px rgba(0,0,0,.25);
+  }
+  .nn h3{font-size:23px;font-weight:900;margin-bottom:14px}
+  .nn-row{display:flex;align-items:center;gap:14px;font-weight:700;font-size:19.5px;margin-top:10px}
+  .nn-row .e{font-size:32px;line-height:1}
+
+  /* ---------- суперспособности ---------- */
+  .img-card img{border-radius:18px;margin-bottom:16px;width:100%;height:210px;object-fit:cover}
+  .img-card .ico{margin-bottom:10px;width:72px;height:72px;font-size:40px;border-radius:20px}
+
+  /* ---------- брайль-декодер ---------- */
+  .lab{
+    margin-top:44px;background:var(--navy);color:#fff;border-radius:var(--radius);
+    padding:34px 30px;box-shadow:0 18px 44px rgba(16,22,79,.45);
+  }
+  .lab h3{font-size:clamp(22px,3.4vw,30px);font-weight:900;display:flex;gap:14px;align-items:center}
+  .lab .hint{color:rgba(255,255,255,.85);font-weight:500;margin:10px 0 20px;font-size:18.5px}
+  .lab input{
+    width:100%;max-width:520px;font:inherit;font-weight:700;font-size:22px;
+    padding:16px 22px;border-radius:18px;border:4px solid var(--yellow);
+    background:#fff;color:var(--navy);outline:none;
+  }
+  .lab input:focus{box-shadow:0 0 0 5px rgba(255,214,0,.35)}
+  .cells{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;min-height:60px}
+  .bcell{
+    display:grid;grid-template-columns:repeat(2,30px);grid-auto-rows:30px;gap:7px;
+    background:rgba(255,255,255,.09);border-radius:12px;padding:11px;
+    animation:pop .25s both;
+  }
+  .bcell.gap{background:transparent}
+  .bdot{width:30px;height:30px;border-radius:50%;border:3px dashed rgba(255,255,255,.28)}
+  .bdot.on{background:var(--yellow);border:3px solid var(--yellow);box-shadow:0 0 16px rgba(255,214,0,.55)}
+  .btxt{margin-top:18px;font-size:26px;letter-spacing:4px;color:var(--yellow);font-weight:800;min-height:34px;word-break:break-all}
+  @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+
+  /* ---------- правила ---------- */
+  .rules{margin-top:44px}
+  .rule-col{border-radius:var(--radius);padding:26px 26px;box-shadow:var(--shadow)}
+  .rule-yes{background:var(--white);border-top:10px solid var(--yellow)}
+  .rule-no{background:var(--white);border-top:10px solid var(--navy)}
+  .rule-col h3{font-size:23px;font-weight:900;margin-bottom:16px;color:var(--navy)}
+  .rule-col li{
+    list-style:none;display:flex;gap:12px;align-items:flex-start;
+    font-weight:600;font-size:18.5px;margin-bottom:13px;
+  }
+  .rule-col li .m{font-size:24px;line-height:1.2}
+
+  /* ---------- город ---------- */
+  .city-img{border-radius:var(--radius);border:6px solid var(--yellow);overflow:hidden;margin-bottom:30px;box-shadow:var(--shadow)}
+  .city-img img{width:100%;height:340px;object-fit:cover}
+
+  /* ---------- герои ---------- */
+  .star{text-align:center;position:relative}
+  .star .ico{margin:0 auto 14px}
+  .star .who{font-size:21px;font-weight:900;color:var(--navy)}
+  .star .what{font-size:17.5px;font-weight:600;margin-top:6px;color:#3a4390}
+  .stars-imgs{margin-top:24px}
+  .stars-imgs img{border-radius:18px;width:100%;height:230px;object-fit:cover}
+  .stars-imgs .cap{font-size:16.5px;font-weight:700;color:#3a4390;text-align:center;margin-top:10px}
+
+  /* ---------- факты ---------- */
+  .fact2{display:flex;gap:24px;align-items:flex-start}
+  .fact2 > img{width:210px;height:210px;border-radius:20px;object-fit:cover;flex:0 0 auto;border:5px solid var(--yellow)}
+  .fact-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .fact-head h3{font-size:24px}
+  .say{
+    background:var(--sky);border-radius:16px;padding:14px 18px;
+    font-weight:600;font-size:19px;margin-top:12px;
+  }
+  .say b{color:var(--navy)}
+  .show{
+    background:var(--yellow);color:var(--navy);border-radius:16px;
+    padding:14px 18px;font-weight:700;font-size:19px;margin-top:12px;
+  }
+  .g1{grid-template-columns:1fr}
+
+  /* ---------- испытание ---------- */
+  .challenge{
+    margin-top:46px;background:var(--yellow);color:var(--navy);
+    border-radius:var(--radius);padding:34px 30px;
+    box-shadow:0 18px 44px rgba(255,214,0,.4);
+  }
+  .challenge h3{font-size:clamp(23px,3.6vw,32px);font-weight:900}
+  .challenge-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:6px}
+  .challenge img{border-radius:20px;width:100%;height:280px;object-fit:cover;border:5px solid #fff}
+  .steps li{
+    list-style:none;display:flex;gap:14px;align-items:flex-start;
+    font-weight:700;font-size:19px;margin:14px 0;
+  }
+  .steps .n{
+    flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--navy);
+    color:var(--yellow);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:19px;
+  }
+  .timer-zone{margin-top:10px;text-align:center}
+  .ring{
+    --p:100;width:190px;height:190px;border-radius:50%;margin:0 auto;
+    background:conic-gradient(var(--navy) calc(var(--p)*1%),rgba(26,35,126,.15) 0);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ring-in{
+    width:150px;height:150px;border-radius:50%;background:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .ring-in .sec{font-size:56px;font-weight:900;color:var(--navy);line-height:1}
+  .ring-in .lab2{font-size:14px;font-weight:800;letter-spacing:1px;color:#3a4390}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;margin-top:20px;
+    background:var(--navy);color:#fff;border:none;cursor:pointer;
+    font:inherit;font-weight:900;font-size:20px;padding:16px 34px;border-radius:999px;
+    box-shadow:0 10px 24px rgba(16,22,79,.4);transition:.15s;
+  }
+  .btn:hover{transform:translateY(-3px)}
+  .btn:active{transform:scale(.96)}
+  .btn:focus-visible{outline:4px solid var(--navy);outline-offset:3px}
+  .challenge-done{font-weight:900;font-size:21px;margin-top:16px;min-height:30px}
+
+  /* ---------- викторина ---------- */
+  .quiz{
+    margin-top:44px;background:var(--white);border-radius:var(--radius);
+    padding:32px 30px;box-shadow:var(--shadow);
+  }
+  .quiz h3{font-size:clamp(22px,3.4vw,30px);font-weight:900;color:var(--navy)}
+  .q{margin-top:26px}
+  .q .qt{font-weight:800;font-size:20px;margin-bottom:14px}
+  .q .ans{display:grid;gap:10px}
+  .ans button{
+    font:inherit;font-weight:700;font-size:18.5px;text-align:left;
+    padding:14px 20px;border-radius:16px;border:3px solid var(--sky);
+    background:var(--sky);color:var(--ink);cursor:pointer;transition:.15s;
+  }
+  .ans button:hover{border-color:var(--yellow);transform:translateX(4px)}
+  .ans button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+  .ans button.right{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}
+  .ans button.wrong{opacity:.55;border-style:dashed}
+  .ans button:disabled{cursor:default;transform:none}
+  .score{
+    margin-top:28px;background:var(--navy);color:#fff;border-radius:18px;
+    padding:18px 24px;font-weight:800;font-size:20px;text-align:center;
+  }
+  .quiz-intro{font-weight:600;font-size:19px;margin-top:12px;color:#3a4390}
+  .quiz-intro b{color:var(--navy)}
+  .q-progress{
+    display:flex;align-items:center;gap:10px;width:fit-content;
+    background:var(--yellow);color:var(--navy);font-weight:900;font-size:19px;
+    border-radius:999px;padding:10px 20px;margin:18px 0 4px;box-shadow:0 6px 16px rgba(255,214,0,.4);
+  }
+  .qnum{
+    display:inline-block;background:var(--navy);color:#fff;font-weight:900;
+    font-size:14px;letter-spacing:.5px;padding:5px 14px;border-radius:999px;margin-bottom:10px;
+  }
+  .qfb{
+    margin-top:12px;font-weight:600;font-size:17.5px;
+    background:var(--sky);border-radius:14px;padding:12px 16px;
+  }
+  .qfb b{color:var(--navy)}
+  .quiz-reset{display:flex;margin:24px auto 0}
+
+  /* ---------- вывод ---------- */
+  .final{
+    margin-top:44px;background:var(--white);border-radius:var(--radius);
+    padding:30px;box-shadow:var(--shadow);color:var(--ink);
+  }
+  .final-top{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+  .final-top > img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:5px solid var(--yellow)}
+  .final h3{font-size:clamp(23px,3.6vw,29px);font-weight:900;color:var(--navy)}
+  .takeaways{list-style:none;margin-top:18px;display:grid;gap:16px}
+  .takeaways li{display:flex;gap:16px;align-items:center;font-size:20px;font-weight:600;line-height:1.35}
+  .takeaways .e{
+    flex:0 0 auto;width:58px;height:58px;border-radius:50%;background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;font-size:29px;
+  }
+  .takeaways b{color:var(--navy)}
+  .final .sign{margin-top:22px;text-align:center;font-weight:900;color:var(--navy);font-size:21px}
+
+  footer{
+    background:var(--navy-deep);color:rgba(255,255,255,.85);
+    text-align:center;padding:34px 20px;font-size:16.5px;font-weight:600;
+  }
+  footer b{color:var(--yellow)}
+
+  @media (max-width:760px){
+    .challenge-grid{grid-template-columns:1fr}
+    .fact2{flex-direction:column;align-items:stretch}
+    .fact2 > img{width:100%;height:200px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Перейти к содержимому</a>
+
+<nav aria-label="Меню сайта">
+  <div class="nav-row">
+    <a href="#home"><span class="e">🏠</span>Главная</a>
+    <a href="#types"><span class="e">🧩</span>Виды</a>
+    <a href="#numbers"><span class="e">🔢</span>Цифры</a>
+    <a href="#skills"><span class="e">🦸</span>Умеют</a>
+    <a href="#city"><span class="e">🏙️</span>Город</a>
+    <a href="#stars"><span class="e">⭐</span>Герои</a>
+    <a href="#facts"><span class="e">🎯</span>Факты</a>
+    <a href="#quiz"><span class="e">🧠</span>Викторина</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ============ 1. ГЛАВНАЯ ============ -->
+<section id="home" class="bg-navy hero" aria-label="Главная страница">
+  <div class="wrap">
+    <span class="badge">🏫 Виктор Игнатьев • 4 «Б» класс</span>
+    <h1>Люди, которые видят мир <em>по-другому</em></h1>
+
+    <div class="hero-img">
+      <img src="images/hero.jpg" alt="Четверо весёлых ребят идут вместе по парку: мальчик с белой тростью, девочка в коляске, мальчик в очках и девочка с рюкзаком">
+    </div>
+
+    <div class="author">
+      <img src="images/viktor.jpg" alt="Портрет Виктора — улыбающегося мальчика с планшетом">
+      <div>
+        <b>Привет! Я Виктор 👋</b>
+        <p>Я изучил тему незрячих людей и делюсь самым интересным. Читай, играй и пробуй сам!</p>
+        <div class="chips">
+          <span class="chip">⏱ 5 минут чтения</span>
+          <span class="chip">🎮 3 интерактива</span>
+          <span class="chip">💛 Без скучных слов</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card fact">
+        <div class="ico">👀</div>
+        <h3>Что такое ОВЗ?</h3>
+        <p>Ограниченные возможности здоровья: когда что-то делать труднее из-за здоровья.</p>
+      </div>
+      <div class="card fact">
+        <div class="ico">🌍</div>
+        <h3>Их много среди нас</h3>
+        <p>Незрячие и слабовидящие учатся, работают и мечтают — как все мы.</p>
+      </div>
+      <div class="card fact">
+        <div class="ico">💛</div>
+        <h3>Главное правило</h3>
+        <p>Им не нужна жалость. Нужны уважение и дружба.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. ВИДЫ ============ -->
+<section id="types" class="bg-light" aria-label="Виды ОВЗ">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num">1</div><h2>Какие бывают ОВЗ</h2></div>
+    <p class="sec-sub">ОВЗ — разные. Вот шесть основных видов:</p>
+
+    <div class="grid g3">
+      <div class="card"><div class="ico">👀</div><h3>По зрению</h3><p>Не видят или видят плохо.</p></div>
+      <div class="card"><div class="ico">👂</div><h3>По слуху</h3><p>Не слышат или слышат плохо.</p></div>
+      <div class="card"><div class="ico">🦿</div><h3>По движению</h3><p>Труднее ходить и двигаться.</p></div>
+      <div class="card"><div class="ico">🗣</div><h3>По речи</h3><p>Труднее говорить или понимать речь.</p></div>
+      <div class="card"><div class="ico">🧩</div><h3>Особенности развития</h3><p>Иначе понимают мир и общение.</p></div>
+      <div class="card"><div class="ico">📖</div><h3>Трудности в учёбе</h3><p>Нужно больше времени и поддержки.</p></div>
+    </div>
+
+    <div class="focus"><span class="e">⭐</span>Мой сайт — про людей с нарушением зрения. Поехали дальше!</div>
+  </div>
+</section>
+
+<!-- ============ 3. ЦИФРЫ ============ -->
+<section id="numbers" class="bg-navy" aria-label="Цифры и статистика">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num">2</div><h2>Сколько таких людей?</h2></div>
+    <p class="sec-sub">По данным Всемирной организации здравоохранения и Всероссийского общества слепых:</p>
+
+    <div class="grid g4">
+      <div class="card stat"><div class="n">2,2 млрд</div><div class="t">видят плохо — почти каждый четвёртый на Земле</div></div>
+      <div class="card stat"><div class="n">36 млн</div><div class="t">не видят совсем</div></div>
+      <div class="card stat"><div class="n">456 тыс.</div><div class="t">человек с нарушением зрения в России</div></div>
+      <div class="card stat"><div class="n">26 тыс.</div><div class="t">детей — как 26 больших школ</div></div>
+    </div>
+
+    <div class="picto" aria-hidden="true">
+      <span class="hl">🧑</span><span>🧑</span><span>🧑</span><span>🧑</span>
+    </div>
+    <p class="picto-cap">Примерно 1 из 4 человек на Земле имеет проблемы со зрением</p>
+
+    <div class="nn">
+      <h3>📍 В Нижнем Новгороде (2026 год):</h3>
+      <div class="nn-row"><span class="e">🦯</span>322 человека получили белую трость</div>
+      <div class="nn-row"><span class="e">🐕</span>18 человек — собаку-проводника</div>
+      <div class="nn-row"><span class="e">🤝</span>550+ человек получили «умных» помощников от Соцфонда</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. СУПЕРСПОСОБНОСТИ ============ -->
+<section id="skills" class="bg-light" aria-label="Как незрячие справляются">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num">3</div><h2>Суперспособности незрячих</h2></div>
+    <p class="sec-sub">Как они учатся, гуляют и читают? Вот их секретные инструменты:</p>
+
+    <div class="grid g3">
+      <div class="card img-card">
+        <img src="images/cane.jpg" alt="Мальчик с белой тростью идёт по жёлтой тактильной плитке">
+        <div class="ico">🦯</div>
+        <h3>Белая трость</h3>
+        <p>Как сканер: щупает дорогу и предупреждает об опасности.</p>
+      </div>
+      <div class="card img-card">
+        <img src="images/dog.jpg" alt="Золотистый лабрадор в жёлтой шлейке ведёт человека по тротуару">
+        <div class="ico">🐕</div>
+        <h3>Собака-проводник</h3>
+        <p>Умный друг: знает десятки команд и обходит все препятствия.</p>
+      </div>
+      <div class="card img-card">
+        <img src="images/braille.jpg" alt="Пальцы ребёнка читают выпуклые точки Брайля на страницах книги">
+        <div class="ico">⠿</div>
+        <h3>Шрифт Брайль</h3>
+        <p>Читать можно пальцами! Буквы — из шести выпуклых точек.</p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card"><div class="ico">👂</div><h3>Слух и память</h3><p>Узнают друзей по голосу и шагам, считают повороты на маршруте.</p></div>
+      <div class="card"><div class="ico">📱</div><h3>Голосовой помощник</h3><p>Смартфон и компьютер сами читают вслух книги и сообщения.</p></div>
+    </div>
+
+    <!-- Интерактив: декодер Брайля -->
+    <div class="lab">
+      <h3>🧪 Лаборатория Брайля</h3>
+      <p class="hint">Напиши своё имя — и увидишь его точками, как в настоящей книге для незрячих!</p>
+      <label for="brIn" style="position:absolute;left:-9999px">Твоё слово</label>
+      <input id="brIn" type="text" maxlength="24" value="Виктор" placeholder="Напиши имя или слово…" autocomplete="off">
+      <div class="cells" id="brCells" aria-live="polite"></div>
+      <div class="btxt" id="brTxt"></div>
+    </div>
+
+    <!-- Правила дружбы -->
+    <div class="rules">
+      <div class="grid g2">
+        <div class="rule-col rule-yes">
+          <h3>✅ Правила дружбы</h3>
+          <ul>
+            <li><span class="m">🙋</span>Сначала спроси: «Помочь тебе?»</li>
+            <li><span class="m">📍</span>Говори точно: «Мяч справа от тебя».</li>
+            <li><span class="m">👋</span>Поздоровайся и назови себя по имени.</li>
+            <li><span class="m">💬</span>Смело говори «Увидимся!» — это вежливо.</li>
+          </ul>
+        </div>
+        <div class="rule-col rule-no">
+          <h3>❌ Так нельзя</h3>
+          <ul>
+            <li><span class="m">✋</span>Хватать за руку и тащить без спроса.</li>
+            <li><span class="m">🦯</span>Трогать чужую трость — это «глаза» человека.</li>
+            <li><span class="m">🐕</span>Гладить собаку-проводника: она на работе!</li>
+            <li><span class="m">🤫</span>Обращаться к маме или другу вместо самого человека.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. ГОРОД ============ -->
+<section id="city" class="bg-navy" aria-label="Доступный город">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num">4</div><h2>Город, удобный для всех</h2></div>
+    <p class="sec-sub">Это уже есть на улицах Нижнего Новгорода. Ищи и найдёшь!</p>
+
+    <div class="city-img">
+      <img src="images/city.jpg" alt="Улица города: звуковой светофор, жёлтая тактильная плитка через дорогу, пандус и пешеходы с собакой-проводником">
+    </div>
+
+    <div class="grid g4">
+      <div class="card"><div class="ico">🟡</div><h3>Жёлтая плитка</h3><p>Бугорки на земле — «дорожка» для трости.</p></div>
+      <div class="card"><div class="ico">🔊</div><h3>Светофор-пищалка</h3><p>Звук подсказывает, когда можно идти.</p></div>
+      <div class="card"><div class="ico">♿</div><h3>Пандусы</h3><p>Пологий въезд вместо лестниц.</p></div>
+      <div class="card"><div class="ico">🎧</div><h3>Аудиогиды</h3><p>Музеи и книги рассказывают голосом.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. ГЕРОИ ============ -->
+<section id="stars" class="bg-light" aria-label="Знаменитые незрячие люди">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num">5</div><h2>Звёзды, которые не видят</h2></div>
+    <p class="sec-sub">Они не видят света — но покорили весь мир:</p>
+
+    <div class="grid g4">
+      <div class="card star"><div class="ico">⠿</div><div class="who">Луи Брайль</div><div class="what">Придумал шрифт из точек в 15 лет!</div></div>
+      <div class="card star"><div class="ico">🎹</div><div class="who">Стиви Уандер</div><div class="what">Легенда музыки, 25 наград «Грэмми»</div></div>
+      <div class="card star"><div class="ico">🎤</div><div class="who">Андреа Бочелли</div><div class="what">Певец, чей голос знает весь мир</div></div>
+      <div class="card star"><div class="ico">🎷</div><div class="who">Рэй Чарльз</div><div class="what">«Отец соула», играл на рояле с детства</div></div>
+    </div>
+
+    <div class="grid g2 stars-imgs" style="margin-top:24px">
+      <div class="card img-card">
+        <img src="images/piano.jpg" alt="Певец в тёмных очках играет на рояле на сцене под жёлтыми прожекторами">
+        <div class="cap">Музыка слышит сердце — глаза не обязательны 🎶</div>
+      </div>
+      <div class="card img-card">
+        <img src="images/everest.jpg" alt="Альпинист с белой тростью стоит на заснеженной вершине горы и поднимает руки в победе">
+        <div class="cap">Эрик Вайхенмайер: первый незрячий на вершине Эвереста (2001) 🏔️</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. ФАКТЫ + ИГРЫ + ВЫВОД ============ -->
+<section id="facts" class="bg-navy" aria-label="Интересные факты и игры">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num">6</div><h2>Вау-факты</h2></div>
+
+    <div class="grid g1">
+      <div class="card fact2">
+        <img src="images/bat.jpg" alt="Мультяшная летучая мышь ночью выпускает жёлтые звуковые волны">
+        <div>
+          <div class="fact-head"><span class="qnum">Факт 1</span><h3>🦇 Видеть ушами</h3></div>
+          <div class="say">🗣 <b>Скажи классу:</b> «Летучие мыши „видят“ ушами: пищат — и звук возвращается эхом от стен. Некоторые незрячие люди научились так же: щёлкают языком и по эху находят двери и стены!»</div>
+          <div class="show">✋ <b>Покажи опыт:</b> хлопни в ладоши в классе, потом в коридоре — эхо звучит по-разному!</div>
+        </div>
+      </div>
+      <div class="card fact2">
+        <img src="images/football.jpg" alt="Футболист с закрытыми глазами бьёт по мячу с колокольчиком внутри">
+        <div>
+          <div class="fact-head"><span class="qnum">Факт 2</span><h3>⚽ Футбол на слух</h3></div>
+          <div class="say">🗣 <b>Скажи классу:</b> «Есть настоящий футбол для незрячих! Внутри мяча — колокольчик: он звенит при каждом ударе, и игроки бегут на звук. А трибуны болеют молча — чтобы игроки всё слышали».</div>
+          <div class="show">✋ <b>Покажи опыт:</b> пусть одноклассник закроет глаза, а ты хлопнешь слева или справа. Угадает, откуда звук?</div>
+        </div>
+      </div>
+      <div class="card fact2">
+        <img src="images/braille2.jpg" alt="Пальцы ребёнка быстро скользят по строчкам точек Брайля">
+        <div>
+          <div class="fact-head"><span class="qnum">Факт 3</span><h3>📖 Читать пальцами</h3></div>
+          <div class="say">🗣 <b>Скажи классу:</b> «Незрячие читают пальцами — по выпуклым точкам. Каждая буква — всего шесть точек. Опытные читатели читают пальцами быстрее, чем многие из нас — глазами!»</div>
+          <div class="show">✋ <b>Покажи опыт:</b> вернись наверх к «Лаборатории Брайля» и набери имя одноклассника — класс удивится!</div>
+        </div>
+      </div>
+      <div class="card fact2">
+        <img src="images/cane2.jpg" alt="Белая трость лежит на жёлтой тактильной плитке с бугорками">
+        <div>
+          <div class="fact-head"><span class="qnum">Факт 4</span><h3>🦯 Почему трость белая?</h3></div>
+          <div class="say">🗣 <b>Скажи классу:</b> «Раньше трости были чёрными, и водители их не замечали. В 1921 году незрячий фотограф покрасил свою трость в белый. Теперь все сразу видят: человек плохо видит — будьте внимательны!»</div>
+          <div class="show">🎤 <b>Спроси класс:</b> «Как вы думаете, почему трость именно белая?» Выслушай версии — и расскажи эту историю.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Испытание -->
+    <div class="challenge">
+      <h3>🎯 Испытание: минута в темноте</h3>
+      <div class="challenge-grid">
+        <img src="images/challenge.jpg" alt="Мальчик в маске для сна на ощупь изучает предметы на столе: мяч, кубик, яблоко и мишку">
+        <div>
+          <ul class="steps">
+            <li><span class="n">1</span>Попроси соседа положить на стол 3 любых предмета.</li>
+            <li><span class="n">2</span>Закрой глаза. Не подглядывай! 😄</li>
+            <li><span class="n">3</span>На ощупь угадай все три предмета за минуту.</li>
+          </ul>
+          <div class="timer-zone">
+            <div class="ring" id="ring"><div class="ring-in"><div class="sec" id="tNum" role="timer" aria-live="off">60</div><div class="lab2">СЕКУНД</div></div></div>
+            <button class="btn" id="tBtn">▶ Начать минуту</button>
+            <div class="challenge-done" id="tDone" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Викторина -->
+    <div class="quiz" id="quiz">
+      <h3>🧠 Проверь себя</h3>
+      <p class="quiz-intro">Это игра для тебя и одноклассников! Правила простые: читай вопрос и <b>нажимай</b> на ответ, который считаешь правильным. За каждый верный ответ — звезда ⭐</p>
+      <div class="q-progress" id="qProg" aria-live="polite"></div>
+      <div id="quizBox"></div>
+      <div class="score" id="quizScore" hidden></div>
+      <button class="btn quiz-reset" id="quizReset" hidden>🔄 Играть снова</button>
+    </div>
+
+    <!-- Вывод -->
+    <div class="final">
+      <div class="final-top">
+        <img src="images/viktor.jpg" alt="Виктор — автор сайта">
+        <div>
+          <h3>Запомни три вещи</h3>
+          <ul class="takeaways">
+            <li><span class="e">👋</span><span><b>Они — такие же, как мы.</b> Учатся, работают, мечтают.</span></li>
+            <li><span class="e">💛</span><span><b>Жалость не нужна.</b> Нужны уважение и дружба.</span></li>
+            <li><span class="e">🎯</span><span><b>Хочешь понять — попробуй сам!</b> Испытание — выше ⬆</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="sign">— Виктор Игнатьев, 4 «Б» 💛</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Сделал <b>Виктор Игнатьев</b>, ученик 4 класса • 2026 год</p>
+  <p style="margin-top:10px"><a href="speaker.html" style="color:var(--yellow);font-weight:800;text-decoration:none">📄 Шпаргалка докладчика — что говорить на презентации</a></p>
+  <p style="margin-top:8px;font-size:14.5px;opacity:.8">Источники: ВОЗ, Всероссийское общество слепых, Социальный фонд России по Нижегородской области</p>
+</footer>
+
+<script>
+/* ================= РУССКИЙ БРАЙЛЬ (ГОСТ, шеститочечная система) ================= */
+const BR = {
+  'а':[1],'б':[1,2],'в':[2,4,5,6],'г':[1,2,4,5],'д':[1,4,5],'е':[1,5],'ё':[1,6],
+  'ж':[2,4,5],'з':[1,3,5,6],'и':[2,4],'й':[1,2,3,4,6],'к':[1,3],'л':[1,2,3],
+  'м':[1,3,4],'н':[1,3,4,5],'о':[1,3,5],'п':[1,2,3,4],'р':[1,2,3,5],'с':[2,3,4],
+  'т':[2,3,4,5],'у':[1,3,6],'ф':[1,2,4],'х':[1,2,5],'ц':[1,4],'ч':[1,2,3,4,5],
+  'ш':[1,5,6],'щ':[1,3,4,6],'ъ':[1,2,3,5,6],'ы':[2,3,4,6],'ь':[2,3,4,5,6],
+  'э':[2,4,6],'ю':[1,2,5,6],'я':[1,2,4,6]
+};
+const DG = {'1':[1],'2':[1,2],'3':[1,4],'4':[1,4,5],'5':[1,5],'6':[1,2,4],'7':[1,2,4,5],'8':[1,2,5],'9':[2,4],'0':[2,4,5]};
+const NUMSIGN = [3,4,5,6];
+const PUNCT = {' ':[],',':[2],'.':[2,5,6],'!':[2,3,5],'?':[2,6],'-':[3,6]};
+
+function cellDots(dots){
+  const c = document.createElement('div');
+  c.className = 'bcell' + (dots.length === 0 ? ' gap' : '');
+  for (let i = 1; i <= 6; i++){
+    const d = document.createElement('span');
+    d.className = 'bdot' + (dots.includes(i) ? ' on' : '');
+    c.appendChild(d);
+  }
+  return c;
+}
+function unicodeBraille(dots){
+  return String.fromCharCode(0x2800 + dots.reduce((m,d)=>m|(1<<(d-1)),0));
+}
+function renderBraille(){
+  const raw = document.getElementById('brIn').value.toLowerCase();
+  const box = document.getElementById('brCells');
+  const txt = document.getElementById('brTxt');
+  box.innerHTML = ''; txt.textContent = '';
+  let out = '', prevDigit = false;
+  for (const ch of raw){
+    if (BR[ch]) { box.appendChild(cellDots(BR[ch])); out += unicodeBraille(BR[ch]); prevDigit = false; }
+    else if (DG[ch]) {
+      if (!prevDigit){ box.appendChild(cellDots(NUMSIGN)); out += unicodeBraille(NUMSIGN); }
+      box.appendChild(cellDots(DG[ch])); out += unicodeBraille(DG[ch]); prevDigit = true;
+    }
+    else if (ch in PUNCT) { box.appendChild(cellDots(PUNCT[ch])); out += unicodeBraille(PUNCT[ch]); prevDigit = false; }
+    if (box.children.length > 26) break;
+  }
+  txt.textContent = out;
+}
+document.getElementById('brIn').addEventListener('input', renderBraille);
+renderBraille();
+
+/* ================= ТАЙМЕР «МИНУТА В ТЕМНОТЕ» ================= */
+let tLeft = 60, tId = null;
+const tNum = document.getElementById('tNum'),
+      ring = document.getElementById('ring'),
+      tBtn = document.getElementById('tBtn'),
+      tDone = document.getElementById('tDone');
+
+function paint(){
+  tNum.textContent = tLeft;
+  ring.style.setProperty('--p', (tLeft/60*100));
+}
+function stopT(msg){
+  clearInterval(tId); tId = null;
+  tBtn.textContent = '▶ Ещё раз';
+  tDone.textContent = msg;
+}
+tBtn.addEventListener('click', () => {
+  if (tId) { stopT('⏸ Остановлено. Попробуй ещё!'); return; }
+  tLeft = 60; tDone.textContent = ''; tBtn.textContent = '⏹ Стоп'; paint();
+  tId = setInterval(() => {
+    tLeft--; paint();
+    if (tLeft <= 0) stopT('⏰ Время вышло! Сколько предметов ты угадал? А теперь угадай их со зрячими глазами 😄');
+  }, 1000);
+});
+paint();
+
+/* ================= ВИКТОРИНА ================= */
+const QUIZ = [
+  { q: 'Как называется шрифт из выпуклых точек, который читают пальцами?',
+    a: ['Шрифт Брайля', 'Тайный код', 'Пунктир'], c: 0,
+    why: 'Его придумал Луи Брайль, когда ему было всего 15 лет.' },
+  { q: 'Можно ли гладить собаку-проводника, когда она ведёт хозяина?',
+    a: ['Можно, если она хорошая', 'Нельзя — она на работе', 'Можно по праздникам'], c: 1,
+    why: 'Собака на работе: если отвлечься, она может пропустить опасность.' },
+  { q: 'Какого цвета трость у незрячего человека?',
+    a: ['Чёрного', 'Зелёного', 'Белого'], c: 2,
+    why: 'Белую трость видно издалека — чтобы водители и прохожие замечали человека.' },
+  { q: 'Что нужно сделать, прежде чем помогать незрячему?',
+    a: ['Сразу взять за руку', 'Сначала спросить: «Помочь тебе?»', 'Ничего, он сам справится'], c: 1,
+    why: 'Сначала спроси — человек сам решит, нужна ли ему помощь.' }
+];
+const qBox = document.getElementById('quizBox');
+const qScoreEl = document.getElementById('quizScore');
+const qReset = document.getElementById('quizReset');
+const qProg = document.getElementById('qProg');
+let qScore = 0, qAnswered = 0;
+
+const stars = (n, total) => '⭐'.repeat(n) + '☆'.repeat(total - n);
+
+function paintProgress(){
+  qProg.textContent = 'Отвечено ' + qAnswered + ' из ' + QUIZ.length + ': ' + stars(qScore, QUIZ.length);
+}
+
+function buildQuiz(){
+  qScore = 0; qAnswered = 0;
+  qBox.innerHTML = '';
+  qScoreEl.hidden = true; qReset.hidden = true;
+  paintProgress();
+  QUIZ.forEach((item, qi) => {
+    const div = document.createElement('div');
+    div.className = 'q';
+    const num = document.createElement('span');
+    num.className = 'qnum'; num.textContent = 'Вопрос ' + (qi + 1);
+    const t = document.createElement('p');
+    t.className = 'qt'; t.textContent = item.q;
+    const ans = document.createElement('div');
+    ans.className = 'ans';
+    const fb = document.createElement('p');
+    fb.className = 'qfb'; fb.hidden = true;
+    item.a.forEach((label, ai) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = label;
+      b.addEventListener('click', () => {
+        if (div.dataset.done) return;
+        div.dataset.done = '1';
+        const all = ans.querySelectorAll('button');
+        all.forEach(x => x.disabled = true);
+        fb.hidden = false;
+        if (ai === item.c){
+          b.classList.add('right'); qScore++;
+          fb.innerHTML = '✅ <b>Верно, молодец!</b> ' + item.why;
+        } else {
+          b.classList.add('wrong'); all[item.c].classList.add('right');
+          fb.innerHTML = '❌ <b>Не угадал.</b> Правильный ответ — «' + item.a[item.c] + '». ' + item.why;
+        }
+        qAnswered++;
+        paintProgress();
+        if (qAnswered === QUIZ.length){
+          qScoreEl.hidden = false;
+          if (qScore === QUIZ.length) qScoreEl.textContent = '🏆 Все звёзды твои! Ты настоящий эксперт!';
+          else if (qScore >= 2) qScoreEl.textContent = '👏 ' + qScore + ' из ' + QUIZ.length + ' — почти идеально!';
+          else qScoreEl.textContent = '😊 ' + qScore + ' из ' + QUIZ.length + ' — перечитай страницу «Умеют» и попробуй снова!';
+          qReset.hidden = false;
+        }
+      });
+      ans.appendChild(b);
+    });
+    div.appendChild(num); div.appendChild(t); div.appendChild(ans); div.appendChild(fb);
+    qBox.appendChild(div);
+  });
+}
+qReset.addEventListener('click', () => {
+  buildQuiz();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+});
+buildQuiz();
+
+/* ================= ПОДСВЕТКА МЕНЮ ================= */
+const links = document.querySelectorAll('.nav-row a');
+const secs = document.querySelectorAll('main section');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, {rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
